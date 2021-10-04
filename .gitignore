@@ -43,8 +43,6 @@ db*
 
 .coverage
 
-bin/
-build/
 
 keys/staker.*
 
