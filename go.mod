@@ -1,4 +1,4 @@
-module github.com/lasthyphen/avalanchego-1.4.11
+module github.com/ava-labs/avalanchego
 
 // Changes to the minimum golang version must also be replicated in
 // scripts/ansible/roles/golang_based/defaults/main.yml
