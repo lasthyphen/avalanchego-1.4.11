@@ -32,13 +32,13 @@ const (
 	UnitTestName = "testing"
 	LocalName    = "local"
 
-	MainnetHRP  = "djtx"
+	MainnetHRP  = "dijets"
 	CascadeHRP  = "cascade"
 	DenaliHRP   = "denali"
 	EverestHRP  = "everest"
 	FujiHRP     = "fuji"
 	UnitTestHRP = "testing"
-	LocalHRP    = "dijets"
+	LocalHRP    = "local"
 	FallbackHRP = "custom"
 )
 

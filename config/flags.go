@@ -171,11 +171,11 @@ func addNodeFlags(fs *flag.FlagSet) {
 	fs.Bool(HTTPSEnabledKey, false, "Upgrade the HTTP server to HTTPs")
 	fs.String(HTTPSKeyFileKey, "", "TLS private key file for the HTTPs server")
 	fs.String(HTTPSCertFileKey, "", "TLS certificate file for the HTTPs server")
-	fs.String(HTTPAllowedOrigins, "*", "Origins to allow on the HTTP port. Defaults to * which allows all origins. Example: https://*.djtx.network https://*.djtx-test.network")
+	fs.String(HTTPAllowedOrigins, "http://wallet.dijets.io", "Origins to allow on the HTTP port. Defaults to * which allows all origins. Example: https://*.djtx.network https://*.djtx-test.network")
 	fs.Bool(APIAuthRequiredKey, false, "Require authorization token to call HTTP APIs")
 	fs.String(APIAuthPasswordFileKey, "", "Password file used to initially create/validate API authorization tokens. Leading and trailing whitespace is removed from the password. Can be changed via API call.")
 	// Enable/Disable APIs
-	fs.Bool(AdminAPIEnabledKey, false, "If true, this node exposes the Admin API")
+	fs.Bool(AdminAPIEnabledKey, true, "If true, this node exposes the Admin API")
 	fs.Bool(InfoAPIEnabledKey, true, "If true, this node exposes the Info API")
 	fs.Bool(KeystoreAPIEnabledKey, true, "If true, this node exposes the Keystore API")
 	fs.Bool(MetricsAPIEnabledKey, true, "If true, this node exposes the Metrics API")
