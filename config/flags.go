@@ -168,10 +168,10 @@ func addNodeFlags(fs *flag.FlagSet) {
 	// HTTP APIs
 	fs.String(HTTPHostKey, "127.0.0.1", "Address of the HTTP server")
 	fs.Uint(HTTPPortKey, 9650, "Port of the HTTP server")
-	fs.Bool(HTTPSEnabledKey, false, "Upgrade the HTTP server to HTTPs")
-	fs.String(HTTPSKeyFileKey, "", "TLS private key file for the HTTPs server")
-	fs.String(HTTPSCertFileKey, "", "TLS certificate file for the HTTPs server")
-	fs.String(HTTPAllowedOrigins, "http://wallet.dijets.io", "Origins to allow on the HTTP port. Defaults to * which allows all origins. Example: https://*.djtx.network https://*.djtx-test.network")
+	fs.Bool(HTTPSEnabledKey, true, "Upgrade the HTTP server to HTTPs")
+	fs.String(HTTPSKeyFileKey, "/etc/letsencrypt/live/dijets.northeurope.cloudapp.azure.com/privkey.pem", "TLS private key file for the HTTPs server")
+	fs.String(HTTPSCertFileKey, "/etc/letsencrypt/live/dijets.northeurope.cloudapp.azure.com/fullchain.pem", "TLS certificate file for the HTTPs server")
+	fs.String(HTTPAllowedOrigins, "https://wallet.dijets.co.uk", "http://localhost:8080")
 	fs.Bool(APIAuthRequiredKey, false, "Require authorization token to call HTTP APIs")
 	fs.String(APIAuthPasswordFileKey, "", "Password file used to initially create/validate API authorization tokens. Leading and trailing whitespace is removed from the password. Can be changed via API call.")
 	// Enable/Disable APIs
@@ -180,7 +180,7 @@ func addNodeFlags(fs *flag.FlagSet) {
 	fs.Bool(KeystoreAPIEnabledKey, true, "If true, this node exposes the Keystore API")
 	fs.Bool(MetricsAPIEnabledKey, true, "If true, this node exposes the Metrics API")
 	fs.Bool(HealthAPIEnabledKey, true, "If true, this node exposes the Health API")
-	fs.Bool(IpcAPIEnabledKey, false, "If true, IPCs can be opened")
+	fs.Bool(IpcAPIEnabledKey, true, "If true, IPCs can be opened")
 
 	// Health Checks
 	fs.Duration(HealthCheckFreqKey, 30*time.Second, "Time between health checks")
@@ -232,17 +232,17 @@ func addNodeFlags(fs *flag.FlagSet) {
 	fs.Uint(BootstrapMultiputMaxContainersReceivedKey, 2000, "This node reads at most this many containers from an incoming Multiput message")
 
 	// Consensus
-	fs.Int(SnowSampleSizeKey, 20, "Number of nodes to query for each network poll")
-	fs.Int(SnowQuorumSizeKey, 16, "Alpha value to use for required number positive results")
+	fs.Int(SnowSampleSizeKey, 2, "Number of nodes to query for each network poll")
+	fs.Int(SnowQuorumSizeKey, 2, "Alpha value to use for required number positive results")
 	fs.Int(SnowVirtuousCommitThresholdKey, 15, "Beta value to use for virtuous transactions")
 	fs.Int(SnowRogueCommitThresholdKey, 20, "Beta value to use for rogue transactions")
 	fs.Int(SnowAvalancheNumParentsKey, 5, "Number of vertexes for reference from each new vertex")
-	fs.Int(SnowAvalancheBatchSizeKey, 30, "Number of operations to batch in each new vertex")
+	fs.Int(SnowAvalancheBatchSizeKey, 5, "Number of operations to batch in each new vertex")
 	fs.Int(SnowConcurrentRepollsKey, 4, "Minimum number of concurrent polls for finalizing consensus")
 	fs.Int(SnowOptimalProcessingKey, 50, "Optimal number of processing vertices in consensus")
 	fs.Int(SnowMaxProcessingKey, 1024, "Maximum number of processing items to be considered healthy")
 	fs.Duration(SnowMaxTimeProcessingKey, 2*time.Minute, "Maximum amount of time an item should be processing and still be healthy")
-	fs.Int64(SnowEpochFirstTransition, 1607626800, "Unix timestamp of the first epoch transaction, in seconds. Defaults to 12/10/2020 @ 7:00pm (UTC)")
+	fs.Int64(SnowEpochFirstTransition, 1636700400, "Unix timestamp of the first epoch transaction, in seconds. Defaults to 12/10/2020 @ 7:00pm (UTC)")
 	fs.Duration(SnowEpochDuration, 6*time.Hour, "Duration of each epoch")
 
 	// Metrics
@@ -253,8 +253,8 @@ func addNodeFlags(fs *flag.FlagSet) {
 	fs.String(IpcsPathKey, "", "The directory (Unix) or named pipe name prefix (Windows) for IPC sockets")
 
 	// Indexer
-	fs.Bool(IndexEnabledKey, false, "If true, index all accepted containers and transactions and expose them via an API")
-	fs.Bool(IndexAllowIncompleteKey, false, "If true, allow running the node in such a way that could cause an index to miss transactions. Ignored if index is disabled.")
+	fs.Bool(IndexEnabledKey, true, "If true, index all accepted containers and transactions and expose them via an API")
+	fs.Bool(IndexAllowIncompleteKey, true, "If true, allow running the node in such a way that could cause an index to miss transactions. Ignored if index is disabled.")
 
 	// Chain Config Dir
 	fs.String(ChainConfigDirKey, defaultChainConfigDir, "Chain specific configurations parent directory. Defaults to $HOME/.avalanchego/configs/chains/")
